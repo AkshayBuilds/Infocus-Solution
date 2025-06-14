@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
 
     const baseUrl = isLocalhost
       ? 'http://localhost:8000'
-      : 'https://infocus-solution-backend.vercel.app/';
+      : 'https://infocus-solution-backend.vercel.app';
     
     try {
       const response = await fetch(`${baseUrl}/api/contact`, {
