@@ -1,33 +1,47 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_mail import FastMail, MessageSchema, MessageType
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, EmailStr
 from .config import email_conf
 from .schemas.Quotation import QuotationForm
-
+import os
 
 app = FastAPI()
-# Configure CORS
+
+# ✅ Serve React build folder
+if os.path.exists("frontend/dist/assets"):
+    app.mount("/assets", StaticFiles(directory="frontend/dist/assets"), name="assets")
+
+@app.get("/")
+async def serve_root():
+    return FileResponse("frontend/dist/index.html")
+
+@app.get("/{full_path:path}")
+async def serve_path(full_path: str):
+    file_path = f"frontend/dist/{full_path}"
+    if os.path.exists(file_path) and not os.path.isdir(file_path):
+        return FileResponse(file_path)
+    return FileResponse("frontend/dist/index.html")
+
+# ✅ CORS setup
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",  # Local development
-        "https://sidhhivinayak.vercel.app",  # Production frontend
-        "https://sidhhivinayak-backend.vercel.app",  # Production backend
-        "*"  # Temporarily allow all origins for testing
-    ],
+    allow_origins=["*"],  # Temporary — tighten later
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
+# ✅ Contact form schema
 class ContactForm(BaseModel):
     name: str
     phone: str
     email: EmailStr
     message: str
 
+# ✅ Quotation form schema
 class QuotationForm(BaseModel):
     name: str
     phone: str
@@ -39,22 +53,14 @@ class QuotationForm(BaseModel):
     tenure: int
     old_vehicle_details: str
     exchange_vehicle: str
-    
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to Infocus Solution Backend"}
 
-@app.get("/hello")
-def read_root():
-    return {"message": "hello from akshay"}
-
+# ✅ Contact endpoint
 @app.post("/api/contact")
 async def send_contact_email(contact: ContactForm):
     try:
-        # Email to admin (you)
         admin_message = MessageSchema(
             subject=f"New Contact Form Submission from {contact.name}",
-            recipients=["amsp33478@gmail.com"],  # Your email address
+            recipients=["amsp33478@gmail.com"],
             body=f"""
             New contact form submission:
             
@@ -66,42 +72,39 @@ async def send_contact_email(contact: ContactForm):
             subtype=MessageType.plain
         )
 
-        # Auto-reply to user
         user_message = MessageSchema(
-    subject="Thank you for contacting Infocus Solution",
-    recipients=[contact.email],  # User's email from the form
-    body=f"""
-    Dear {contact.name},
+            subject="Thank you for contacting Infocus Solution",
+            recipients=[contact.email],
+            body=f"""
+            Dear {contact.name},
 
-    Thank you for reaching out to Infocus Solution — 
-    Your Global Immigration Expert. We have received 
-    your inquiry and will get back to you as soon as possible 
-    with the required details.
+            Thank you for reaching out to Infocus Solution — 
+            Your Global Immigration Expert. We have received 
+            your inquiry and will get back to you as soon as possible 
+            with the required details.
 
-    Your message:
-    {contact.message}
+            Your message:
+            {contact.message}
 
-    Best regards,  
-    Infocus Solution Team
-    """,
-    subtype=MessageType.plain
-)
+            Best regards,  
+            Infocus Solution Team
+            """,
+            subtype=MessageType.plain
+        )
 
         fm = FastMail(email_conf)
-        # Send both emails
         await fm.send_message(admin_message)
         await fm.send_message(user_message)
 
         return {"status": "success", "message": "Email sent successfully"}
     except Exception as e:
-        print(f"Error sending email: {str(e)}")  # For debugging
+        print(f"Error sending email: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
- 
- 
+
+# ✅ Quotation endpoint
 @app.post("/api/quotation")
 async def submit_quotation(quotation: QuotationForm):
     try:
-        # Email to admin
         admin_message = MessageSchema(
             subject=f"New Quotation Request from {quotation.name}",
             recipients=["amsp33478@gmail.com"],
@@ -122,7 +125,6 @@ async def submit_quotation(quotation: QuotationForm):
             subtype=MessageType.plain
         )
 
-        # Auto-reply to user
         user_message = MessageSchema(
             subject="Thank you for your quotation request",
             recipients=[quotation.email],
