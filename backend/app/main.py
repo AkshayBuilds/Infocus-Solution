@@ -1,5 +1,3 @@
-app = FastAPI()
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_mail import FastMail, MessageSchema, MessageType
@@ -10,6 +8,7 @@ from .config import email_conf
 from .schemas.Quotation import QuotationForm
 import os
 
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
