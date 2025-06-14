@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException, Request
+app = FastAPI()
+
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_mail import FastMail, MessageSchema, MessageType
 from fastapi.staticfiles import StaticFiles
@@ -7,8 +9,6 @@ from pydantic import BaseModel, EmailStr
 from .config import email_conf
 from .schemas.Quotation import QuotationForm
 import os
-
-app = FastAPI()
 
 # ✅ Serve React build folder
 if os.path.exists("frontend/dist/assets"):
