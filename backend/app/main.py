@@ -10,22 +10,7 @@ from .config import email_conf
 from .schemas.Quotation import QuotationForm
 import os
 
-# ✅ Serve React build folder
-if os.path.exists("frontend/dist/assets"):
-    app.mount("/assets", StaticFiles(directory="frontend/dist/assets"), name="assets")
 
-@app.get("/")
-async def serve_root():
-    return FileResponse("frontend/dist/index.html")
-
-@app.get("/{full_path:path}")
-async def serve_path(full_path: str):
-    file_path = f"frontend/dist/{full_path}"
-    if os.path.exists(file_path) and not os.path.isdir(file_path):
-        return FileResponse(file_path)
-    return FileResponse("frontend/dist/index.html")
-
-# ✅ CORS setup
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Temporary — tighten later
