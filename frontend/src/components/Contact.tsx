@@ -49,9 +49,15 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus('loading');
+
+    const isLocalhost = window.location.hostname === 'localhost';
+
+    const baseUrl = isLocalhost
+      ? 'http://localhost:8000'
+      : 'https://infocus-solution-backend.vercel.app/';
     
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/contact`, {
+      const response = await fetch(`${baseUrl}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
