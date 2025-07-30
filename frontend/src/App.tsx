@@ -7,16 +7,16 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+  // useEffect(() => {
+  //   // Simulate loading time
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   // if (isLoading) {
   //   return (

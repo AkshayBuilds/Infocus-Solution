@@ -1,0 +1,24 @@
+/* .active {
+    color: #007bff;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  .active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background-color: #007bff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .active:hover::after {
+    transform: scaleX(1);
+  } */
