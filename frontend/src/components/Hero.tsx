@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, Globe2, Users, Award } from 'lucide-react';
+import Circle_logo from '../../Public/Circle_logo.jpeg';
 
 const Hero: React.FC = () => {
   const scrollToContact = () => {
@@ -15,13 +16,9 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-2 w-20 h-20 sm:w-32 sm:h-32 bg-blue-100 rounded-full opacity-20 animate-pulse"></div>
         <img 
-                src="Circle_logo.jpeg" 
+                src={Circle_logo}
                 alt="INFOCUS SOLUTION" 
                 className="absolute top-40 right-4 w-16 h-16 sm:w-24 sm:h-24 bg-blue-200 rounded-full opacity-30 animate-bounce"
-                onError={(e) => {
-                  console.log('Logo failed to load, trying alternative path');
-                  e.currentTarget.src = '/LOGO.png';
-                }}
               />
         <div className="absolute bottom-20 left-1/4 w-10 h-10 sm:w-16 sm:h-16 bg-blue-300 rounded-full opacity-25 animate-pulse"></div>
         <div className="absolute bottom-40 right-1/3 w-12 h-12 sm:w-20 sm:h-20 bg-blue-150 rounded-full opacity-20 animate-bounce"></div>

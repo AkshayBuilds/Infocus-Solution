@@ -1,6 +1,6 @@
 import React from "react";
 import { CheckCircle, FileText, ClipboardList, UserCheck, CalendarCheck, RefreshCcw, AlertCircle } from "lucide-react";
-import logo from '../Public/Circle_logo.jpeg';
+
 const helpPoints = [
   {
     icon: <CheckCircle className="h-7 w-7 text-blue-600" />, 

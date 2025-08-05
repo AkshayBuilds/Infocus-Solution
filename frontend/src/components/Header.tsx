@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X} from "lucide-react";
 import { NavLink } from 'react-router-dom';
 import './Header.css';
-import logo from '../Public/LOGO.png';
+import logo from '../../Public/LOGO.png';
 
 const navItems: { name: string; to: string; section: string }[] = [
   { name: "Home", to: "/home", section: "home" },
