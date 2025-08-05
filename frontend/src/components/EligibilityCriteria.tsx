@@ -1,5 +1,4 @@
 import React from "react";
-import logo from '../../public/LOGO.png';
 
 const EligibilityCriteria: React.FC = () => (
   <section id="eligibility" className="bg-gradient-to-br from-blue-50 to-white py-8 sm:py-12 relative overflow-hidden">
@@ -10,7 +9,7 @@ const EligibilityCriteria: React.FC = () => (
       <div className="max-w-lg sm:max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-4 sm:p-8 md:p-12">
         <div className="flex flex-col sm:flex-row items-center mb-4 sm:mb-6 gap-4 sm:gap-10 text-center sm:text-left">
           <img 
-                src={logo} 
+                src="/LOGO.png" 
                 alt="INFOCUS SOLUTION" 
                 className="h-12 sm:h-[59px]" 
               />
