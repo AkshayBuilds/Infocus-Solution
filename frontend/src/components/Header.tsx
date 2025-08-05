@@ -68,7 +68,15 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <img src="/LOGO.png" alt="INFOCUS SOLUTION" className="h-12 sm:h-[60px] transition-transform duration-300 hover:scale-105" />
+              <img 
+                src="LOGO.png" 
+                alt="INFOCUS SOLUTION" 
+                className="h-12 sm:h-[60px] transition-transform duration-300 hover:scale-105"
+                onError={(e) => {
+                  console.log('Logo failed to load, trying alternative path');
+                  e.currentTarget.src = '/LOGO.png';
+                }}
+              />
               <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             {/* <span className="text-xl font-bold text-gray-800">
