@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Phone, Mail, MapPin, MessageCircle, Send, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Send, CheckCircle, FileText, ExternalLink } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -90,6 +90,7 @@ const Contact: React.FC = () => {
   };
 
   return (
+    
     <section id="contact" ref={sectionRef} className="py-12 sm:py-20 bg-white">
       <div className="container mx-auto px-2 sm:px-4">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -153,6 +154,31 @@ const Contact: React.FC = () => {
                 >
                   <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span>WhatsApp Consultation</span>
+                </button>
+              </div>
+
+              {/* Google Form Section */}
+              <div className="mt-6 sm:mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-4 sm:p-6 rounded-xl shadow-lg">
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="bg-blue-100 p-2 rounded-lg">
+                    <FileText className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-sm sm:text-base">Quick Application Form</h4>
+                    <p className="text-gray-600 text-xs">Fill our detailed form for better assistance</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 text-xs sm:text-sm mb-4">
+                  Get personalized visa consultation by filling out our comprehensive application form. 
+                  Our experts will review your details and provide tailored guidance.
+                </p>
+                <button
+                  onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSccGNHj9f8pjz3A63QadgJlOVMjz_KtQPkPTuoADK5_autLwQ/viewform?usp=dialog', '_blank')}
+                  className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>Fill Application Form</span>
+                  <ExternalLink className="h-4 w-4" />
                 </button>
               </div>
 

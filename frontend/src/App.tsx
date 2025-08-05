@@ -6,6 +6,8 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import EligibilityCriteria from './components/EligibilityCriteria';
 import HowWeHelp from './components/HowWeHelp';
+import { FileText, ExternalLink } from 'lucide-react';
+
 function App() {
   // const [isLoading, setIsLoading] = useState(true);
 

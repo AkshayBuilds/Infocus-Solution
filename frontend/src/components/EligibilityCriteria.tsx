@@ -2,7 +2,7 @@ import React from "react";
 import logo from '../../Public/LOGO.png';
 
 const EligibilityCriteria: React.FC = () => (
-  <section className="bg-gradient-to-br from-blue-50 to-white py-8 sm:py-12 relative overflow-hidden">
+  <section id="eligibility" className="bg-gradient-to-br from-blue-50 to-white py-8 sm:py-12 relative overflow-hidden">
     {/* Decorative background elements */}
     <div className="absolute top-4 left-2 w-16 h-16 sm:top-10 sm:left-10 sm:w-24 sm:h-24 bg-blue-100 rounded-full opacity-20 animate-pulse z-0"></div>
     <div className="absolute bottom-4 right-4 w-10 h-10 sm:bottom-10 sm:right-20 sm:w-16 sm:h-16 bg-blue-200 rounded-full opacity-30 animate-bounce z-0"></div>

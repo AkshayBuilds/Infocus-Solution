@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, Globe2, Users, Award } from 'lucide-react';
-import Circle_logo from '../../Public/Circle_logo.jpeg';
+import { ArrowRight, CheckCircle, Globe2, Users, Award, FileText, ExternalLink } from 'lucide-react';
+import Circle_logo from '../../public/Circle_logo.jpeg';
 
 const Hero: React.FC = () => {
   const scrollToContact = () => {
@@ -10,18 +10,25 @@ const Hero: React.FC = () => {
     }
   };
 
+  const scrollToEligibility = () => {
+    const element = document.getElementById('eligibility');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-2 w-20 h-20 sm:w-32 sm:h-32 bg-blue-100 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute top-20 left-2 w-20 h-20 sm:w-32 sm:h-32 bg-blue-100 rounded-full opacity-20 animate-pulse hidden sm:block"></div>
         <img 
                 src={Circle_logo}
                 alt="INFOCUS SOLUTION" 
-                className="absolute top-40 right-4 w-16 h-16 sm:w-24 sm:h-24 bg-blue-200 rounded-full opacity-30 animate-bounce"
+                className="absolute top-40 right-4 w-16 h-16 sm:w-24 sm:h-24 bg-blue-200 rounded-full opacity-30 animate-bounce hidden sm:block"
               />
-        <div className="absolute bottom-20 left-1/4 w-10 h-10 sm:w-16 sm:h-16 bg-blue-300 rounded-full opacity-25 animate-pulse"></div>
-        <div className="absolute bottom-40 right-1/3 w-12 h-12 sm:w-20 sm:h-20 bg-blue-150 rounded-full opacity-20 animate-bounce"></div>
+        <div className="absolute bottom-20 left-1/4 w-10 h-10 sm:w-16 sm:h-16 bg-blue-300 rounded-full opacity-25 animate-pulse hidden sm:block"></div>
+        <div className="absolute bottom-40 right-1/3 w-12 h-12 sm:w-20 sm:h-20 bg-blue-150 rounded-full opacity-20 animate-bounce hidden sm:block"></div>
       </div>
 
       <div className="container mx-auto px-2 sm:px-4 pt-20 pb-10 sm:pt-24 sm:pb-16 relative z-10">
@@ -42,21 +49,29 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 sm:mb-12">
               <button
                 onClick={scrollToContact}
-                className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-base sm:text-lg"
+                className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-base sm:text-lg order-1"
               >
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
               <button
-                onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-base sm:text-lg"
+                onClick={scrollToEligibility}
+                className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-base sm:text-lg order-2"
               >
                 Check Visa Requirements
+              </button>
+              <button
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSccGNHj9f8pjz3A63QadgJlOVMjz_KtQPkPTuoADK5_autLwQ/viewform?usp=dialog', '_blank')}
+                className="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 flex items-center justify-center group shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-base sm:text-lg order-3"
+              >
+                <FileText className="mr-2 h-5 w-5" />
+                Apply Now
+                <ExternalLink className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </button>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-xs sm:max-w-md mx-auto lg:mx-0">
+            <div className="grid grid-cols-3 gap-6 sm:gap-8 max-w-xs sm:max-w-md mx-auto lg:mx-0">
               <div className="text-center">
                 <div className="flex justify-center mb-2">
                   <Users className="h-8 w-8 text-blue-600" />
