@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../Public/LOGO.png';
 
 const EligibilityCriteria: React.FC = () => (
   <section className="bg-gradient-to-br from-blue-50 to-white py-8 sm:py-12 relative overflow-hidden">
@@ -9,13 +10,9 @@ const EligibilityCriteria: React.FC = () => (
       <div className="max-w-lg sm:max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-4 sm:p-8 md:p-12">
         <div className="flex flex-col sm:flex-row items-center mb-4 sm:mb-6 gap-4 sm:gap-10 text-center sm:text-left">
           <img 
-                src="LOGO.png" 
+                src={logo} 
                 alt="INFOCUS SOLUTION" 
                 className="h-12 sm:h-[59px]" 
-                onError={(e) => {
-                  console.log('Logo failed to load, trying alternative path');
-                  e.currentTarget.src = '/LOGO.png';
-                }}
               />
           <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-blue-700">Eligibility Criteria for Tourist Visa</h2>
         </div>
