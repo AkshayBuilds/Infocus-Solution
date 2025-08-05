@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, FileText, ExternalLink } from "lucide-react";
 import { NavLink } from 'react-router-dom';
 import './Header.css';
-import logo from '../../Public/LOGO.png';
+import logo from '/LOGO.png';
 
 const navItems: { name: string; to: string; section: string }[] = [
   { name: "Home", to: "/home", section: "home" },
@@ -86,9 +86,6 @@ const Header: React.FC = () => {
                 <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </div>
-            {/* <span className="text-xl font-bold text-gray-800">
-              INFOCUS SOLUTION
-            </span> */}
           </div>
 
           {/* Desktop Navigation */}

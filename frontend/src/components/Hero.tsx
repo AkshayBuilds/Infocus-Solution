@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, Globe2, Users, Award, FileText, ExternalLink } from 'lucide-react';
-import Circle_logo from '../../public/Circle_logo.jpeg';
+import Circle_logo from '/Circle_logo.jpeg';
 
 const Hero: React.FC = () => {
   const scrollToContact = () => {
