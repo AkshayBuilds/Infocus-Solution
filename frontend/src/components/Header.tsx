@@ -68,6 +68,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="relative">
+              {/* adding a right part */}
               <img 
                 src="LOGO.png" 
                 alt="INFOCUS SOLUTION" 

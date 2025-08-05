@@ -11,7 +11,7 @@ const EligibilityCriteria: React.FC = () => (
           <img 
                 src="LOGO.png" 
                 alt="INFOCUS SOLUTION" 
-                className="h-12 sm:h-[60px]" 
+                className="h-12 sm:h-[59px]" 
                 onError={(e) => {
                   console.log('Logo failed to load, trying alternative path');
                   e.currentTarget.src = '/LOGO.png';
