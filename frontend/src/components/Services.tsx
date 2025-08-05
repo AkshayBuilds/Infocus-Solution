@@ -80,6 +80,7 @@ const countries: Country[] = [
 const Services: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [showAllMobile, setShowAllMobile] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -109,6 +110,15 @@ const Services: React.FC = () => {
     document.body.style.overflow = 'auto';
   };
 
+  // Helper to detect mobile (below md)
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section id="services" ref={sectionRef} className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -126,7 +136,7 @@ const Services: React.FC = () => {
 
           {/* Countries Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {countries.map((country, index) => (
+            {(isMobile && !showAllMobile ? countries.slice(0, 4) : countries).map((country, index) => (
               <div
                 key={country.name}
                 className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 ${
@@ -152,6 +162,26 @@ const Services: React.FC = () => {
               </div>
             ))}
           </div>
+          {/* See More/See Less Button for Mobile */}
+          {isMobile && countries.length > 4 && (
+            <div className="flex justify-center mt-6">
+              {!showAllMobile ? (
+                <button
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg"
+                  onClick={() => setShowAllMobile(true)}
+                >
+                  See More
+                </button>
+              ) : (
+                <button
+                  className="bg-gray-200 text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-all duration-300 shadow-lg"
+                  onClick={() => setShowAllMobile(false)}
+                >
+                  See Less
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

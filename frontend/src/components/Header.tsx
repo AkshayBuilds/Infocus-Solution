@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X} from "lucide-react";
 import { NavLink } from 'react-router-dom';
 import './Header.css';
 
@@ -34,9 +34,17 @@ const Header: React.FC = () => {
           }
         }
       }
+      // Set isScrolled to true if scrolled down, false if at top
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Call once to set initial state
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -50,16 +58,22 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-100" 
+          : "bg-gradient-to-r from-blue-50/90 to-white/90 backdrop-blur-sm"
+      }`}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Globe className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-gray-800">
+          <div className="flex items-center space-x-3">
+            <div className="relative">
+              <img src="../Public/LOGO.png" alt="" className="h-12 sm:h-[60px] transition-transform duration-300 hover:scale-105" />
+              <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            {/* <span className="text-xl font-bold text-gray-800">
               INFOCUS SOLUTION
-            </span>
+            </span> */}
           </div>
 
           {/* Desktop Navigation */}
@@ -69,9 +83,16 @@ const Header: React.FC = () => {
                 key={item.section}
                 to={item.to}
                 onClick={() => scrollToSection(item.section)}
-                className={getLinkClasses(item.section)}
+                className={`group relative font-semibold transition-all duration-300 px-3 py-2 rounded-lg ${
+                  activeSection === item.section
+                    ? "text-blue-600 bg-blue-50 shadow-md transform scale-105"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                }`}
               >
                 {item.name}
+                <div className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                  activeSection === item.section ? "w-full" : "w-0 group-hover:w-full"
+                }`}></div>
               </NavLink>
             ))}
           </nav>
@@ -79,27 +100,40 @@ const Header: React.FC = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            className="md:hidden p-3 rounded-xl hover:bg-blue-50 transition-all duration-300 group"
           >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            <div className="relative">
+              {isMenuOpen ? (
+                <X className="h-6 w-6 text-gray-700 group-hover:text-blue-600 transition-colors duration-300" />
+              ) : (
+                <Menu className="h-6 w-6 text-gray-700 group-hover:text-blue-600 transition-colors duration-300" />
+              )}
+              <div className="absolute inset-0 bg-blue-500/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 py-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+          <nav className="md:hidden mt-3 sm:mt-4 py-4 border-t border-gray-200 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-100 animate-in slide-in-from-top-2 duration-300">
+            <div className="flex flex-col space-y-2 sm:space-y-3 px-4">
+              {navItems.map((item, index) => (
                 <button
                   key={item.section}
                   onClick={() => scrollToSection(item.section)}
-                  className={`text-left transition-colors duration-200 ${activeSection === item.section ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-blue-600"}`}
+                  className={`text-left transition-all duration-300 py-3 px-4 rounded-xl transform hover:scale-105 ${
+                    activeSection === item.section 
+                      ? "text-blue-600 font-semibold bg-gradient-to-r from-blue-50 to-blue-100 shadow-md border border-blue-200" 
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50"
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {item.name}
+                  <div className="flex items-center justify-between">
+                    <span>{item.name}</span>
+                    {activeSection === item.section && (
+                      <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                    )}
+                  </div>
                 </button>
               ))}
             </div>

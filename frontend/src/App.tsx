@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
+import EligibilityCriteria from './components/EligibilityCriteria';
+import HowWeHelp from './components/HowWeHelp';
 function App() {
   // const [isLoading, setIsLoading] = useState(true);
 
@@ -35,7 +35,9 @@ function App() {
       <Header />
       <Hero />
       <About />
+      <EligibilityCriteria />
       <Services />
+      <HowWeHelp />
       <Contact />
       <Footer />
     </div>
