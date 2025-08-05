@@ -8,7 +8,7 @@ const EligibilityCriteria: React.FC = () => (
     <div className="container mx-auto px-2 sm:px-4 relative z-10">
       <div className="max-w-lg sm:max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-4 sm:p-8 md:p-12">
         <div className="flex flex-col sm:flex-row items-center mb-4 sm:mb-6 gap-4 sm:gap-10 text-center sm:text-left">
-          <img src="../Public/LOGO.png" alt="" className="h-12 sm:h-[60px]" />
+          <img src="../LOGO.png" alt="" className="h-12 sm:h-[60px]" />
           <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-blue-700">Eligibility Criteria for Tourist Visa</h2>
         </div>
         <p className="mb-4 sm:mb-6 text-gray-700 text-base sm:text-lg">The eligibility criteria for a tourist/travel visa can vary depending on the destination country. However, here are some general requirements that are often necessary:</p>
