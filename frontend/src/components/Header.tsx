@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, FileText, ExternalLink } from "lucide-react";
 import { NavLink } from 'react-router-dom';
 import './Header.css';
+import LOGO from '../../public/LOGO.png'
 
 const navItems: { name: string; to: string; section: string }[] = [
   { name: "Home", to: "/home", section: "home" },
@@ -78,7 +79,7 @@ const Header: React.FC = () => {
                 className="transition-transform duration-300 hover:scale-105 focus:outline-none"
               >
                 <img 
-                  src="/LOGO.png" 
+                  src={LOGO}
                   alt="INFOCUS SOLUTION" 
                   className="h-12 sm:h-[60px]"
                 />
