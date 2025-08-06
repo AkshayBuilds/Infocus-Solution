@@ -18,9 +18,9 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-br from-blue-50 to-white relative overflow-hidden">
+    <section id="home" className="min-h-screen bg-gradient-to-br from-blue-50 to-white relative overflow-hidden w-full max-w-full">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden w-full">
         <div className="absolute top-20 left-2 w-20 h-20 sm:w-32 sm:h-32 bg-blue-100 rounded-full opacity-20 animate-pulse hidden sm:block"></div>
         <img 
                 src={LOGO}
