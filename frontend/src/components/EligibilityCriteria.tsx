@@ -1,5 +1,5 @@
 import React from "react";
-import LOGO from '../../public/LOGO.png'
+import LOGO from '../public/LOGO.png'
 
 const EligibilityCriteria: React.FC = () => (
   <section id="eligibility" className="bg-gradient-to-br from-blue-50 to-white py-8 sm:py-12 relative overflow-hidden">
